@@ -1,20 +1,21 @@
-
-
+primes = [2]
 def is_prime(num):
-    for i in range(2, num // 2 + 1):
-        if num % i == 0:
+    for p in primes:
+        if num % p == 0:
             return False
+        if p * 2 > num:
+            break
+    primes.append(num)
+    print(num)
     return True
 
-
-def sum_primes_below(bound=2000000):
-    sum_of_primes = 2
+def sum_primes_below(bound=10):
     for i in range(3, bound, 2):
-        if is_prime(i):
-            sum_of_primes += i
-    return sum_of_primes
-
+        is_prime(i)
+    sum_primes = sum(primes)
+    primes = [2]
+    return sum_primes
+            
 
 if __name__ == "__main__":
-    print(sum_primes_below(bound=10))
-    print(sum_primes_below(bound=20))
+    print(sum_primes_below(bound=1000000))
