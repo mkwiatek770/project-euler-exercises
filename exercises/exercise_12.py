@@ -28,4 +28,22 @@ def count_divisors(num):
             divisors += 1
     return divisors
 
+def find_t_num_with_n_divisors(n):
+    i = 1
+    highest = 1
+    while True:
+        i += 1
+        divisors = count_divisors(i)
+        if divisors > highest:
+            highest = divisors
+
+            print(f"{i} -- {divisors}")
+        if divisors > n:
+            return i
+
+
+if __name__ == "__main__":
+    
+    print(find_t_num_with_n_divisors(10))
+    print(find_t_num_with_n_divisors(200))
 
