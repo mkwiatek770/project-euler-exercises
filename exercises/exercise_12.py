@@ -41,9 +41,41 @@ def find_t_num_with_n_divisors(n):
         if divisors > n:
             return i
 
+def find_all_prime_nums(num):
+    primes = []
+    for i in range(2, num):
+        is_prime = True
+        for j in range(2, i):
+            if i % j == 0:
+                is_prime = False
+        if is_prime:
+            primes.append(i)
+    return primes
 
+
+def find_t_num_with_n_divisors1(n):
+    start = 1
+    for num in find_all_prime_nums(n):
+        start *= num
+    lowest = n
+    i = start
+    while True:
+        divisible = True
+        for div in range(n, 1, -1):
+            if i % div != 0:
+                divisible = False
+                if div < lowest:
+                    print(div)
+                    lowest = div
+                i += start
+                break
+        if divisible:
+            return i
+        
 if __name__ == "__main__":
     
     print(find_t_num_with_n_divisors(10))
-    print(find_t_num_with_n_divisors(200))
+    print(find_t_num_with_n_divisors1(10))
+    #print(find_t_num_with_n_divisors(200))
+    print(find_t_num_with_n_divisors1(200))
 
