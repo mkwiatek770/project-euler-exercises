@@ -6,4 +6,4 @@ def power_digit_sum(num, exp):
 
 if __name__ == "__main__":
     print(power_digit_sum(2, 15))
-    
+    print(power_digit_sum(2, 1000)) 
