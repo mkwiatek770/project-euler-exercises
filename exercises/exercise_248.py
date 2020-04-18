@@ -7,21 +7,20 @@ Find the 150,000th such number.
 https://en.wikipedia.org/wiki/Euler%27s_totient_function
 """
 
-def gcd(a: int, b: int):
-    if a > b:
-        bigger, smaller = a, b
-    else:
-        bigger, smaller = a, b
-    while True:
-        reminder = bigger % smaller
-        if reminder == 0:
-            return smaller
-        bigger = smaller
-        smaller = reminder
+def gcd(a: int, b: int) -> 1:
+    """
+    Find greatest common divisor of two numbers
+    requirement a >= b
+    """
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+    
 
 if __name__ == "__main__":
     print(gcd(34, 17))
     print(gcd(45, 10))
-    print(gcd(10, 45))
+    print(gcd(17, 13))
+    #print(gcd(10, 45))
 
 
