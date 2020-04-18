@@ -16,11 +16,26 @@ def gcd(a: int, b: int) -> 1:
         return a
     return gcd(b, a % b)
     
+def is_prime(n: int) -> bool:
+    for i in range(2, round(n**(1/2)) + 1):
+        if n % i == 0:
+            return False
+    return True 
+
+def phi(n: int) -> int:
+    """Euler's tatient function"""
+    if is_prime(n):
+        return n - 1
+    raise NotImplemented
+
 
 if __name__ == "__main__":
     print(gcd(34, 17))
     print(gcd(45, 10))
     print(gcd(17, 13))
     #print(gcd(10, 45))
+
+    assert phi(223) == 222
+    assert phi(211) == 210
 
 
