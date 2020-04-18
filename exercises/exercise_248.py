@@ -26,7 +26,11 @@ def phi(n: int) -> int:
     """Euler's tatient function"""
     if is_prime(n):
         return n - 1
-    raise NotImplemented
+    counter = 0
+    for i in range(1, n):
+        if gcd(n, i) == 1:
+            counter += 1
+    return counter
 
 
 if __name__ == "__main__":
@@ -37,5 +41,6 @@ if __name__ == "__main__":
 
     assert phi(223) == 222
     assert phi(211) == 210
-
+    assert phi(232) == 112
+    assert phi(316) == 156
 
