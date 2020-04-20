@@ -4,11 +4,11 @@ DIGIT_MAP = {
             2: ("two", 3),
             3: ("three", 5),
             4: ("four", 4),
-            5: ("five", 5),
+            5: ("five", 4),
             6: ("six", 3),
             7: ("seven", 5),
             8: ("eight", 5),
-            9: ("nine", 5),
+            9: ("nine", 4),
             10: ("ten", 3),
             11: ("eleven", 6),
             12: ("twelve", 6),
@@ -51,3 +51,5 @@ def letter_used(num):
 
 if __name__ == "__main__":
     letter_used(1234)
+    letter_used(342)
+    letter_used(115)
