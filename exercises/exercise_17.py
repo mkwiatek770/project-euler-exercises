@@ -27,10 +27,25 @@ DIGIT_MAP = {
 
 def letter_used(num):
     digits = [int(str(d)) for d in str(num)]
-    
     counter = 0
-    for digit in digits:
-        counter += DIGIT_MAP[digit][1]
+
+    if num // 1000 >= 1:
+        thousands = num // 1000
+        counter += DIGIT_MAP[1000][1]
+        counter += DIGIT_MAP[thousands][1]
+        num = num - (num // 1000)*1000
+    if num // 100 >= 1:
+        hundreds = num // 100
+        counter += DIGIT_MAP[hundreds][1]
+        counter += DIGIT_MAP[100][1]
+        num = num - (num // 100)*100
+    if num // 10 >= 1:
+        decimal = num // 10
+        counter += DIGIT_MAP[int(str(decimal) + '0')][1]
+        num = num - (num // 10)*10
+    if num > 0:
+        counter += DIGIT_MAP[num][1]
+
     print(counter)
 
 
