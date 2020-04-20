@@ -20,13 +20,12 @@ DIGIT_MAP = {
             70: ("seventy", 7),
             80: ("eighty", 6),
             90: ("ninety", 6),
-            100: ("hundred and", 10),
-            1000: ("thousand and", 11),
+            100: ("hundred", 7),
+            1000: ("thousand", 8),
         }
 
 
 def letter_used(num):
-    digits = [int(str(d)) for d in str(num)]
     counter = 0
 
     if num // 1000 >= 1:
@@ -39,6 +38,8 @@ def letter_used(num):
         counter += DIGIT_MAP[hundreds][1]
         counter += DIGIT_MAP[100][1]
         num = num - (num // 100)*100
+        if num > 0:
+            counter += len("and")
     if num // 10 >= 1:
         decimal = num // 10
         counter += DIGIT_MAP[int(str(decimal) + '0')][1]
@@ -46,10 +47,18 @@ def letter_used(num):
     if num > 0:
         counter += DIGIT_MAP[num][1]
 
-    print(counter)
+    return counter
 
 
 if __name__ == "__main__":
-    letter_used(1234)
-    letter_used(342)
-    letter_used(115)
+    print(letter_used(1234))
+    print(letter_used(342))
+    print(letter_used(115))
+    print(letter_used(1000))
+    print(letter_used(100))
+
+    counter = 0
+    for i in range(1, 1001):
+        counter += letter_used(i)
+    print(counter)
+
