@@ -18,9 +18,8 @@ digits = {
 
 
 def letter_used(num):
-    if num in digits:
-        return len(digits[num].replace(" ", ""))
+    digits = [str(d) for d in str(num)]
+    print(digits)
 
 if __name__ == "__main__":
-    print(letter_used(1000))
-    print(letter_used(2))
+    letter_used(1234)
