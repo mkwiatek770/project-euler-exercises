@@ -27,17 +27,14 @@ DIGIT_MAP = {
 
 def letter_used(num):
     counter = 0
-    full_phrase = ""
+    full_phrase = []
 
     if num // 1000 >= 1:
         thousands = DIGIT_MAP[num // 1000]
         thousand = DIGIT_MAP[1000]
         
-        full_phrase += thousands[0]
-        full_phrase += thousand[0]
-
-        counter += thousands[1]
-        counter += thousands[1]
+        full_phrase.extend([thousands[0], thousand[0]])
+        counter += thousands[1] + thousand[1]
 
         num = num - (num // 1000)*1000
 
