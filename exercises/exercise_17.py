@@ -44,10 +44,16 @@ def letter_used(num):
         decimal = num // 10
         counter += DIGIT_MAP[int(str(decimal) + '0')][1]
         num = num - (num // 10)*10
+        if num > 0:
+            counter += 1
     if num > 0:
         counter += DIGIT_MAP[num][1]
 
     return counter
+
+def letter_used_v2(number):
+    total = sum(DIGIT_MAP[int(d)][1] for d in str(number))
+    return total
 
 
 if __name__ == "__main__":
@@ -61,4 +67,7 @@ if __name__ == "__main__":
     for i in range(1, 1001):
         counter += letter_used(i)
     print(counter)
+
+    # Version 2
+    print(letter_used_v2(342))
 
