@@ -41,11 +41,13 @@ def letter_used(num):
         if num > 0:
             counter += len("and")
     if num // 10 >= 1:
-        decimal = num // 10
-        counter += DIGIT_MAP[int(str(decimal) + '0')][1]
-        num = num - (num // 10)*10
-        if num > 0:
-            counter += 1
+        if num in DIGIT_MAP:
+            counter += DIGIT_MAP[num][1]
+            num = 0
+        else:
+            decimal = num // 10
+            counter += DIGIT_MAP[int(str(decimal) + '0')][1]
+            num = num - (num // 10)*10
     if num > 0:
         counter += DIGIT_MAP[num][1]
 
@@ -53,6 +55,11 @@ def letter_used(num):
 
 def letter_used_v2(number):
     total = sum(DIGIT_MAP[int(d)][1] for d in str(number))
+    if number >= 1000:
+        total += len("thousand")
+        number = number = (number // 1000)*1000
+    if number >= 100:
+        total += len("hundredand")
     return total
 
 
