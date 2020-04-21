@@ -27,12 +27,20 @@ DIGIT_MAP = {
 
 def letter_used(num):
     counter = 0
+    full_phrase = ""
 
     if num // 1000 >= 1:
-        thousands = num // 1000
-        counter += DIGIT_MAP[1000][1]
-        counter += DIGIT_MAP[thousands][1]
+        thousands = DIGIT_MAP[num // 1000]
+        thousand = DIGIT_MAP[1000]
+        
+        full_phrase += thousands[0]
+        full_phrase += thousand[0]
+
+        counter += thousands[1]
+        counter += thousands[1]
+
         num = num - (num // 1000)*1000
+
     if num // 100 >= 1:
         hundreds = num // 100
         counter += DIGIT_MAP[hundreds][1]
@@ -50,7 +58,7 @@ def letter_used(num):
             num = num - (num // 10)*10
     if num > 0:
         counter += DIGIT_MAP[num][1]
-
+    print(full_phrase)
     return counter
 
 def letter_used_v2(number):
@@ -70,10 +78,10 @@ if __name__ == "__main__":
     print(letter_used(1000))
     print(letter_used(100))
 
-    counter = 0
-    for i in range(1, 1001):
-        counter += letter_used(i)
-    print(counter)
+    #counter = 0
+    #for i in range(1, 1001):
+    #    counter += letter_used(i)
+    #print(counter)
 
     # Version 2
     print(letter_used_v2(342))
