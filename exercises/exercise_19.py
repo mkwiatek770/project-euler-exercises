@@ -32,5 +32,24 @@ def number_of_first_sundays(since=FIRST_DAY_OF_CENTURY, to=LAST_DAY_OF_CENTURY) 
     return counter
 
 
+# Solution without using datatime library
+
+def number_of_first_sundays_2():
+    months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    l = [0, 1, 0, 0, 0, 0, 0]
+    counter = 0
+    for year in range(1901, 2001):
+        if year % 4 == 0 and year % 100 == 0:
+            months[1] = 29
+        else:
+            months[1] = 28
+        for m in range(12):
+            if l[0] == 1:
+                counter += 1
+            for _ in range(months[m]):
+                l = [l[-1]] + l[:-1]
+    return counter
+
+
 if __name__ == '__main__':
     print(number_of_first_sundays())
