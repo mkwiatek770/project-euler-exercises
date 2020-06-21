@@ -15,18 +15,22 @@ import datetime
 from dateutil.relativedelta import relativedelta
 
 # intuitive approach
-
-DAY = datetime.timedelta(days=1)
-WEEK = datetime.timedelta(days=7)
+# DAY = datetime.timedelta(days=1)
+# WEEK = datetime.timedelta(days=7)
 MONTH = relativedelta(months=+1)
 FIRST_DAY_OF_CENTURY = datetime.datetime(1901, 1, 1)
 LAST_DAY_OF_CENTURY = datetime.datetime(2000, 12, 31)
-current_date = FIRST_DAY_OF_CENTURY
 
-counter = 0
-while current_date <= LAST_DAY_OF_CENTURY:
-    if current_date.weekday() == 6:
-        counter += 1
-    current_date += MONTH
 
-print(counter)
+def number_of_first_sundays(since=FIRST_DAY_OF_CENTURY, to=LAST_DAY_OF_CENTURY) -> int: 
+    current_date = since
+    counter = 0
+    while current_date <= to:
+        if current_date.weekday() == 6:
+            counter += 1
+        current_date += MONTH
+    return counter
+
+
+if __name__ == '__main__':
+    print(number_of_first_sundays())
